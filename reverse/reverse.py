@@ -12,6 +12,7 @@ class Node:
     def set_next(self, new_next):
         self.next_node = new_next
 
+
 class LinkedList:
     def __init__(self):
         self.head = None
@@ -38,5 +39,27 @@ class LinkedList:
 
         return False
 
+    # ideal solution uses recursion and not a loop
     def reverse_list(self, node, prev):
-        pass
+        # While loop, doesn't pass test anyway
+        # current = self.head
+        # prev = None
+        # while current:
+        #     next_pointer = current.next_node
+        #     current.next_node = prev
+        #     prev = current
+        #     current = next_pointer
+        # self.head = prev
+
+        # not a loop but acts like one
+        if node is not None:
+            # current node we are visiting
+            current = node.next_node
+            # redirect pointer to provided prev value
+            node.next_node = prev
+            # recursion (not a loop)
+            self.reverse_list(current, node)
+        # final node condition
+        else:
+            self.head = prev
+
